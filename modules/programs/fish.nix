@@ -1,12 +1,6 @@
 {
   programs.fish.enable = true;
 
-  programs.bash.interactiveShellInit = /* sh */ ''
-    if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
-      exec fish
-    fi
-  '';
-
   hj.xdg.config.files."fish/config.fish".text = /* fish */ ''
     set fish_greeting
 

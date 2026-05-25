@@ -31,9 +31,9 @@ in
   boot.loader.limine = {
     enable = true;
     extraEntries = ''
-      /Windows
-          protocol: efi-chainload
-          path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+      /Windows/
+          protocol: efi
+          path: guid(db8fa3b1-2ca6-43cc-92ea-b915a011ef28):/EFI/Microsoft/Boot/bootmgfw.efi
     '';
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
