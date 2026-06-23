@@ -1,17 +1,11 @@
 {
-  inputs,
   lib,
+  nvf,
   ...
 }:
 
 {
-  imports = [
-    inputs.nvf.nixosModules.default
-  ];
-
-  environment.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  imports = [ nvf ];
 
   programs.nvf =
     let
@@ -105,7 +99,6 @@
 
           clipboard = {
             enable = true;
-            providers.wl-copy.enable = true;
             registers = "unnamedplus";
           };
 

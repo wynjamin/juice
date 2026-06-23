@@ -2,37 +2,23 @@
   description = "My config yay";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    systems.url = "github:nix-systems/x86_64-linux";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hjem = {
       url = "github:feel-co/hjem";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nix-darwin.follows = "";
-      };
-    };
-
-    nvim-config = {
-      url = "github:7elia/nvim";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nvf = {
       url = "github:NotAShelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
         flake-compat.follows = "";
-        ndg.follows = "";
-      };
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
       };
     };
 
@@ -45,7 +31,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, ... }:
+    inputs@{ nixpkgs, nix-darwin, ... }:
     {
       nixosConfigurations.juice = nixpkgs.lib.nixosSystem {
         specialArgs =
@@ -57,10 +43,31 @@
 
             system = "x86_64-linux";
             self = "/home/${user}/repos/juice";
+            nvf = inputs.nvf.nixosModules.default;
           };
 
         modules = [
-          ./modules
+          ./modules/nixos
+          ./modules/common
+        ];
+      };
+
+      darwinConfigurations.juice = nix-darwin.lib.darwinSystem {
+        specialArgs =
+          let
+            user = "apple";
+          in
+          {
+            inherit inputs user;
+
+            system = "aarch64-darwin";
+            self = "/Users/${user}/repos/juice";
+            nvf = inputs.nvf.darwinModules.default;
+          };
+
+        modules = [
+          ./modules/darwin
+          ./modules/common
         ];
       };
     };

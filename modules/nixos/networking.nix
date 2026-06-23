@@ -1,6 +1,4 @@
 {
-  networking.hostName = "juice";
-
   networking.networkmanager.enable = true;
 
   networking.firewall.allowedTCPPorts = [
