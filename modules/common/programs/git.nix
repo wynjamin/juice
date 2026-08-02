@@ -1,14 +1,18 @@
 { pkgs, lib, ... }:
-
+let
+  hosts = [
+    "https://github.com"
+    "https://gist.github.com"
+  ];
+in
 {
-  hj = {
-    packages = with pkgs; [
-      git
-      git-credential-manager
-      github-cli
-    ];
+  hj.packages = with pkgs; [
+    github-cli
+  ];
 
-    files.".gitconfig".text = lib.generators.toGitINI {
+  programs.git = {
+    enable = true;
+    config = {
       init.defaultBranch = "master";
 
       user = {
@@ -48,6 +52,18 @@
           ];
         };
       };
+
+      credential = builtins.listToAttrs (
+        map (
+          host:
+          lib.nameValuePair host {
+            helper = [
+              ""
+              "${pkgs.github-cli}/bin/gh auth git-credential"
+            ];
+          }
+        ) hosts
+      );
     };
   };
 }
