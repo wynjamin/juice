@@ -1,8 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
-  system,
   ...
 }:
 let
@@ -10,7 +8,7 @@ let
     name = "launch-session";
 
     runtimeInputs = [
-      inputs.hyprland.packages.${system}.hyprland
+      pkgs.hyprland
     ];
 
     bashOptions = [
@@ -34,6 +32,9 @@ in
       /Windows
           protocol: efi
           path: guid(db8fa3b1-2ca6-43cc-92ea-b915a011ef28):/EFI/Microsoft/Boot/bootmgfw.efi
+    '';
+    extraConfig = ''
+      timeout: no
     '';
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
