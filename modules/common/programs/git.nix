@@ -6,18 +6,19 @@ let
   ];
 in
 {
-  hj.packages = with pkgs; [
-    github-cli
-  ];
+  hj = {
+    packages = with pkgs; [
+      git
+      git-credential-manager
+      github-cli
+    ];
 
-  programs.git = {
-    enable = true;
-    config = {
+    files.".gitconfig".text = lib.generators.toGitINI {
       init.defaultBranch = "master";
 
       user = {
-        name = "7elia";
-        email = "176603882+7elia@users.noreply.github.com";
+        name = "wyn";
+        email = "176603882+wynjamin@users.noreply.github.com";
       };
 
       core = {
