@@ -4,7 +4,6 @@
   imports = [
     ./hyprland.nix
     ./foot.nix
-    ./fish.nix
   ];
 
   environment.sessionVariables = {

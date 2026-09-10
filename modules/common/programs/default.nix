@@ -4,6 +4,7 @@
   imports = [
     ./git.nix
     ./neovim.nix
+    ./fish.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

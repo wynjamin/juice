@@ -14,7 +14,10 @@
   system.primaryUser = user;
   hjem = {
     clobberByDefault = true;
-    users.${user}.enable = true;
+    users.${user} = {
+      enable = true;
+      files.".hushlogin".text = "";
+    };
   };
 
   users.users.${user} = {

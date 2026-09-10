@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   programs.fish.enable = true;
 
@@ -14,11 +16,11 @@
 
     set -g fish_prompt_pwd_dir_length -1
 
-    alias nix-switch="sudo nixos-rebuild switch --flake ${builtins.toString ../..}"
-    alias reboot="sudo reboot now"
+    # alias nix-switch="sudo nixos-rebuild switch --flake ${builtins.toString ../..}"
+    # alias reboot="sudo reboot now"
   '';
 
-  environment.sessionVariables = {
-    SHELL = "fish";
+  environment.variables = {
+    SHELL = "${pkgs.fish}/bin/fish";
   };
 }

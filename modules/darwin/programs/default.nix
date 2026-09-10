@@ -1,5 +1,5 @@
-{ pkgs, ... }:
-
 {
-  hj.packages = with pkgs; [ ghostty-bin ];
+  imports = [
+    ./ghostty.nix
+  ];
 }
