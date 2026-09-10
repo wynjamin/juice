@@ -121,6 +121,7 @@
                 buffers.cwd_only = true;
               };
               path_display = [ "truncate" ];
+              sorting_strategy = "descending";
             };
           };
 
