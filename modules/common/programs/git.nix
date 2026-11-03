@@ -1,11 +1,13 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   hosts = [
     "https://github.com"
     "https://gist.github.com"
   ];
-in
-{
+in {
   hj = {
     packages = with pkgs; [
       git
@@ -57,13 +59,14 @@ in
       credential = builtins.listToAttrs (
         map (
           host:
-          lib.nameValuePair host {
-            helper = [
-              ""
-              "${pkgs.github-cli}/bin/gh auth git-credential"
-            ];
-          }
-        ) hosts
+            lib.nameValuePair host {
+              helper = [
+                ""
+                "${pkgs.github-cli}/bin/gh auth git-credential"
+              ];
+            }
+        )
+        hosts
       );
     };
   };

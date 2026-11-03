@@ -2,9 +2,7 @@
   pkgs,
   self,
   ...
-}:
-
-{
+}: {
   programs.hyprland.enable = true;
 
   hj = {

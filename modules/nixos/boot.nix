@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   launchSession = pkgs.writeShellApplication {
     name = "launch-session";
 
@@ -16,15 +15,18 @@ let
       "pipefail"
     ];
 
-    text = /* sh */ ''
-      if [ "$XDG_VTNR" -eq 1 ] && [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
-          start-hyprland
-      fi
-    '';
+    text =
+      /*
+      sh
+      */
+      ''
+        if [ "$XDG_VTNR" -eq 1 ] && [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+            start-hyprland
+        fi
+      '';
   };
-in
-{
-  environment.systemPackages = with pkgs; [ sbctl ];
+in {
+  environment.systemPackages = with pkgs; [sbctl];
 
   boot.loader.limine = {
     enable = true;

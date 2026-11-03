@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./programs
 
@@ -14,7 +16,7 @@
     ];
   };
 
-  fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
+  fonts.packages = with pkgs; [nerd-fonts.fira-code];
 
   system.stateVersion = 6;
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-darwin";

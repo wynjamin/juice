@@ -1,9 +1,15 @@
-{
-  networking.networkmanager.enable = true;
-
-  networking.firewall.allowedTCPPorts = [
-    25565
-    8080
-  ];
-  networking.firewall.allowedUDPPorts = [ 25565 ];
+_: {
+  networking = {
+    networkmanager.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+        25565
+        8080
+      ];
+      allowedUDPPorts = [
+        25565
+        8080
+      ];
+    };
+  };
 }

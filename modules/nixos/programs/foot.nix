@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   programs.foot = {
     enable = true;
     enableFishIntegration = true;
@@ -8,7 +6,7 @@
 
   hj = {
     xdg.config.files."foot/foot.ini" = {
-      generator = lib.generators.toINIWithGlobalSection { };
+      generator = lib.generators.toINIWithGlobalSection {};
       value = {
         globalSection = {
           font = "FiraCode Nerd Font Mono:size=11";

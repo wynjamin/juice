@@ -1,34 +1,17 @@
 {
-  inputs,
   user,
-  lib,
   pkgs,
   ...
-}:
-
-{
+}: {
   imports = [
-    inputs.hjem.nixosModules.default
-    (lib.modules.mkAliasOptionModule [ "hj" ] [ "hjem" "users" user ])
+    ../common/hjem.nix
   ];
-
-  hjem = {
-    clobberByDefault = true;
-    users.${user} = {
-      enable = true;
-      xdg = {
-        config.files."autostart".type = "delete";
-        data.files."applications".type = "delete";
-      };
-    };
-  };
 
   users = {
     defaultUserShell = pkgs.fish;
 
     users.${user} = {
       isNormalUser = true;
-      description = user;
       extraGroups = [
         "networkmanager"
         "wheel"

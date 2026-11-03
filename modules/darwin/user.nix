@@ -3,12 +3,10 @@
   user,
   lib,
   ...
-}:
-
-{
+}: {
   imports = [
     inputs.hjem.darwinModules.default
-    (lib.modules.mkAliasOptionModule [ "hj" ] [ "hjem" "users" user ])
+    (lib.modules.mkAliasOptionModule ["hj"] ["hjem" "users" user])
   ];
 
   system.primaryUser = user;

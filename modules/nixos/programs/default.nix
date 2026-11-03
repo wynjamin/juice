@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+_: {
   imports = [
     ./hyprland.nix
     ./foot.nix

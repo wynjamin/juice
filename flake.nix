@@ -30,45 +30,60 @@
     };
   };
 
-  outputs =
-    inputs@{ nixpkgs, nix-darwin, ... }:
-    {
-      nixosConfigurations.juice = nixpkgs.lib.nixosSystem {
-        specialArgs =
-          let
-            user = "grape";
-          in
-          {
-            inherit inputs user;
+  outputs = inputs @ {
+    nixpkgs,
+    nix-darwin,
+    ...
+  }: {
+    nixosConfigurations.juice = nixpkgs.lib.nixosSystem {
+      specialArgs = let
+        user = "grape";
+      in {
+        inherit inputs user;
 
-            system = "x86_64-linux";
-            self = "/home/${user}/repos/juice";
-            nvf = inputs.nvf.nixosModules.default;
-          };
-
-        modules = [
-          ./modules/nixos
-          ./modules/common
-        ];
+        system = "x86_64-linux";
+        self = "/home/${user}/repos/juice";
+        nvf = inputs.nvf.nixosModules.default;
       };
 
-      darwinConfigurations.juice = nix-darwin.lib.darwinSystem {
-        specialArgs =
-          let
-            user = "apple";
-          in
-          {
-            inherit inputs user;
-
-            system = "aarch64-darwin";
-            self = "/Users/${user}/repos/juice";
-            nvf = inputs.nvf.darwinModules.default;
-          };
-
-        modules = [
-          ./modules/darwin
-          ./modules/common
-        ];
-      };
+      modules = [
+        ./modules/nixos
+        ./modules/common
+      ];
     };
+
+    nixosConfigurations.juice-wsl = nixpkgs.lib.nixosSystem {
+      specialArgs = let
+        user = "blueberry";
+      in {
+        inherit inputs user;
+
+        system = "x86_64-linux";
+        self = "/home/${user}/repos/juice";
+        nvf = inputs.nvf.nixosModules.default;
+      };
+
+      modules = [
+        ./modules/wsl
+        ./modules/common
+      ];
+    };
+
+    darwinConfigurations.juice = nix-darwin.lib.darwinSystem {
+      specialArgs = let
+        user = "apple";
+      in {
+        inherit inputs user;
+
+        system = "aarch64-darwin";
+        self = "/Users/${user}/repos/juice";
+        nvf = inputs.nvf.darwinModules.default;
+      };
+
+      modules = [
+        ./modules/darwin
+        ./modules/common
+      ];
+    };
+  };
 }

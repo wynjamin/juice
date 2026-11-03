@@ -1,29 +1,31 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   shellBin = "${pkgs.fish}/bin/fish";
-in
-{
+in {
   programs.fish.enable = true;
 
   hj = {
-    xdg.config.files."fish/config.fish".text = /* fish */ ''
-      set fish_greeting
+    xdg.config.files."fish/config.fish".text =
+      /*
+      fish
+      */
+      ''
+        set fish_greeting
 
-      fish_add_path ~/.local/bin
+        fish_add_path ~/.local/bin
 
-      functions -c fish_prompt _prompt
-      function fish_prompt
-        if set -q IN_NIX_SHELL
-          echo -n "(nix) "
+        functions -c fish_prompt _prompt
+        function fish_prompt
+          if set -q IN_NIX_SHELL
+            echo -n "(nix) "
+          end
+          _prompt
         end
-        _prompt
-      end
 
-      set -g fish_prompt_pwd_dir_length -1
+        set -g fish_prompt_pwd_dir_length -1
 
-      # alias nix-switch="sudo nixos-rebuild switch --flake ${builtins.toString ../..}"
-      # alias reboot="sudo reboot now"
-    '';
+        # alias nix-switch="sudo nixos-rebuild switch --flake ${builtins.toString ../..}"
+        # alias reboot="sudo reboot now"
+      '';
 
     # files.".bashrc".text = /* bash */ ''
     #   if [[ -n "$\{IN_NIX_SHELL:-}" && $- == *i* && -z "$\{IN_FISH_FROM_NIX:-}" ]]; then
