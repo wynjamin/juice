@@ -1,6 +1,5 @@
 {user, ...}: {
   imports = [
-    <nixos-wsl/modules>
     ../common/locale.nix
     ./user.nix
     ./hardware-configuration.nix
