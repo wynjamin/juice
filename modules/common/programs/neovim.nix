@@ -222,15 +222,14 @@
 
           languages = {
             enableTreesitter = true;
+            enableFormat = true;
+            enableExtraDiagnostics = true;
 
             typescript = {
               enable = true;
               extensions.ts-error-translator.enable = true;
               extraDiagnostics.types = [ "biomejs" ];
-              format = {
-                enable = true;
-                type = [ "biome-check" ];
-              };
+              format.type = [ "biome-check" ];
             };
             html.enable = true;
             css.enable = true;
@@ -240,7 +239,10 @@
 
             markdown.enable = true;
 
-            python.enable = true;
+            python = {
+              lsp.servers = [ "pyright" ];
+              enable = true;
+            };
 
             fish.enable = true;
             bash.enable = true;
