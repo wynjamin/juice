@@ -1,9 +1,11 @@
 {
   user,
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.hjem.nixosModules.default
     ../common/hjem.nix
   ];
 

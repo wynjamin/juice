@@ -1,11 +1,9 @@
 {
-  inputs,
   lib,
   user,
   ...
 }: {
   imports = [
-    inputs.hjem.darwinModules.default
     (lib.modules.mkAliasOptionModule ["hj"] ["hjem" "users" user])
   ];
 
