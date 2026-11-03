@@ -33,6 +33,7 @@
   outputs = inputs @ {
     nixpkgs,
     nix-darwin,
+    nixos-wsl,
     ...
   }: {
     nixosConfigurations.juice = nixpkgs.lib.nixosSystem {
@@ -64,6 +65,7 @@
       };
 
       modules = [
+        nixos-wsl.nixosModules.default
         ./modules/wsl
         ./modules/common
       ];
