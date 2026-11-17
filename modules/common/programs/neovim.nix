@@ -137,6 +137,13 @@
               skip_confirm_for_simple_edits = true;
             };
           };
+          csvview.enable = true;
+          auto-indent-nvim.enable = true;
+          mkdir.enable = true;
+          nix-develop.enable = true;
+          smart-paste-nvim.enable = true;
+
+          preview.glow.enable = true;
         };
 
         notes.todo-comments.enable = true;
@@ -190,7 +197,15 @@
           cheatsheet.enable = true;
         };
 
-        visuals.fidget-nvim.enable = true;
+        visuals = {
+          fidget-nvim.enable = true;
+          cinnamon-nvim.enable = true;
+          highlight-undo.enable = true;
+          nvim-cursorline = {
+            enable = true;
+            setupOpts.cursorWord.enable = true;
+          };
+        };
 
         mini.comment.enable = true;
 
