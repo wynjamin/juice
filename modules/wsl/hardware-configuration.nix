@@ -8,7 +8,7 @@
 
   boot.initrd.availableKernelModules = [ "virtio_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/lib/modules/6.18.33.1-microsoft-standard-WSL2" =
@@ -27,7 +27,7 @@
     };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/177f6168-d502-44d4-b41e-feb2c6bd1d77";
+    { device = "/dev/disk/by-uuid/533499c1-3e0a-4281-a736-96fcf4e15dcf";
       fsType = "ext4";
     };
 
@@ -36,13 +36,18 @@
       fsType = "tmpfs";
     };
 
-  # fileSystems."/mnt/wslg/distro" =
-#     { device = "";
-#       fsType = "none";
-#       options = [ "bind" ];
-#     };
+#  fileSystems."/mnt/wslg/distro" =
+#    { device = "";
+#      fsType = "none";
+#      options = [ "bind" ];
+#    };
 
   fileSystems."/usr/lib/wsl/lib" =
+    { device = "none";
+      fsType = "overlay";
+    };
+
+  fileSystems."/mnt/wslg/doc" =
     { device = "none";
       fsType = "overlay";
     };
@@ -51,11 +56,6 @@
     { device = "/mnt/wslg/.X11-unix";
       fsType = "none";
       options = [ "bind" ];
-    };
-
-  fileSystems."/mnt/wslg/doc" =
-    { device = "none";
-      fsType = "overlay";
     };
 
   fileSystems."/mnt/c" =
@@ -74,7 +74,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/eb76b6d3-6aa2-4162-a12d-d95455026549"; }
+    [ { device = "/dev/disk/by-uuid/d1146408-780a-48c6-bb47-653e47150f64"; }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
