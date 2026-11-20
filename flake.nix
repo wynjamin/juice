@@ -28,6 +28,11 @@
       url = "github:extendify-mod/extendify";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mkshell = {
+      url = "github:wynjamin/mkshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {

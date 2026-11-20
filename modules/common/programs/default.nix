@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   imports = [
     ./git.nix
     ./neovim.nix
@@ -9,6 +14,7 @@
 
   hj.packages = with pkgs; [
     vesktop
+    inputs.mkshell.packages.${system}.default
     # inputs.extendify.packages.${system}.default
   ];
 }
