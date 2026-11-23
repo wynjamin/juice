@@ -252,6 +252,7 @@
 
           rust.enable = true;
           clang.enable = true;
+          zig.enable = true;
 
           markdown.enable = true;
 
