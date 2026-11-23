@@ -23,18 +23,8 @@ in {
 
         set -g fish_prompt_pwd_dir_length -1
 
-        # alias nix-switch="sudo nixos-rebuild switch --flake ${builtins.toString ../..}"
-        # alias reboot="sudo reboot now"
+        alias nix-shell="nix-shell --command ${shellBin}"
       '';
-
-    # files.".bashrc".text = /* bash */ ''
-    #   if [[ -n "$\{IN_NIX_SHELL:-}" && $- == *i* && -z "$\{IN_FISH_FROM_NIX:-}" ]]; then
-    #       if command -v fish >/dev/null 2>&1; then
-    #           export IN_FISH_FROM_NIX=1
-    #           exec ${shellBin}
-    #       fi
-    #   fi
-    # '';
   };
 
   environment.variables = {
