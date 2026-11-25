@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.hjem.darwinModules.default
+    inputs.hjem.nixosModules.default
     ../common/hjem.nix
   ];
 
