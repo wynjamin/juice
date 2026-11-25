@@ -33,6 +33,7 @@
 
           signcolumn = "yes:1";
           cursorlineopt = "screenline";
+          guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:ver25";
           background = "dark";
           scrolloff = 8;
         };
@@ -81,6 +82,11 @@
             desc = "Smart rename";
             lua = true;
           }
+          {
+            mode = "t";
+            key = "<Esc>";
+            action = "<C-\\><C-N><C-W>c";
+          }
         ];
 
         autocmds = [
@@ -88,9 +94,7 @@
             event = ["TextYankPost"];
             callback =
               lib.generators.mkLuaInline
-              /*
-              lua
-              */
+              # lua
               ''
                 function()
                     vim.hl.on_yank()
@@ -169,7 +173,7 @@
         diagnostics = {
           enable = true;
           config = {
-            virtual_text = true;
+            virtual_lines.overflow = "wrap";
             underline = true;
             update_in_insert = true;
             float = {
@@ -230,6 +234,22 @@
         };
 
         snippets.luasnip.enable = true;
+
+        terminal.toggleterm = {
+          enable = true;
+          mappings.open = "<leader>tt";
+          setupOpts = {
+            direction = "float";
+            start_in_insert = true;
+            persist_mode = false;
+            shell = "fish";
+            float_opts = {
+              border = "curved";
+              width = 120;
+              height = 30;
+            };
+          };
+        };
 
         theme = {
           enable = true;
