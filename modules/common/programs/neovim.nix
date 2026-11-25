@@ -10,6 +10,11 @@
   in {
     enable = true;
     settings = {
+      mnw = {
+        enable = true;
+        aliases = ["v"];
+      };
+
       vim = {
         options = {
           number = true;
@@ -102,9 +107,6 @@
           enable = true;
           registers = "unnamedplus";
         };
-
-        viAlias = true;
-        vimAlias = true;
 
         lsp = {
           enable = true;
