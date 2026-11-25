@@ -200,7 +200,6 @@
         visuals = {
           fidget-nvim.enable = true;
           cinnamon-nvim.enable = true;
-          highlight-undo.enable = true;
           nvim-cursorline = {
             enable = true;
             setupOpts.cursorWord.enable = true;
