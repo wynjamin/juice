@@ -5,9 +5,7 @@ in {
 
   hj = {
     xdg.config.files."fish/config.fish".text =
-      /*
-      fish
-      */
+      # fish
       ''
         set fish_greeting
 

@@ -16,9 +16,7 @@
     ];
 
     text =
-      /*
-      sh
-      */
+      # sh
       ''
         if [ "$XDG_VTNR" -eq 1 ] && [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
             start-hyprland
